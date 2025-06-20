@@ -3,18 +3,22 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
-    private AudioSource instance;
-    public AudioSource Instance
+    private AudioManager instance;
+    public AudioManager Instance
     {
-        get
+        get { return instance; }
+    }
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
         {
-            if (!instance)
-            {
-                instance = new GameObject().AddComponent<AudioSource>();
-                DontDestroyOnLoad(instance.gameObject);
-            }
-            return instance;
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
