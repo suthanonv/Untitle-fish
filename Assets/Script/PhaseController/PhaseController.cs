@@ -22,6 +22,7 @@ public class PhaseController : MonoBehaviour
     [ContextMenu("Next Stage Text")]
     public void NextStage()
     {
+        Debug.Log("Call Method [NextStage]");
         int maxValue = Enum.GetValues(typeof(Phase)).Cast<int>().Max();
         int currentPhaseInt = (int)phase;
 

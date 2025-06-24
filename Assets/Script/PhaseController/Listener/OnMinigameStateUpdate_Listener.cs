@@ -2,9 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MgState_Listener : MonoBehaviour
+public class OnMinigameStateUpdate_Listener : MonoBehaviour
 {
-    [SerializeField] UnityEvent<bool> OnMinigameUpdate;
+
+    [SerializeField] UnityEvent OnWin;
+    [SerializeField] UnityEvent OnLoses;
     public event Action<bool> OnMingameStateUpdate;
     private void Awake()
     {
@@ -13,7 +15,16 @@ public class MgState_Listener : MonoBehaviour
     }
     void OnMiniGameWinStateUpdate(bool isWin)
     {
-        OnMinigameUpdate?.Invoke(isWin);
+        if (isWin)
+        {
+            OnWin?.Invoke();
+        }
+        else
+        {
+            OnLoses?.Invoke();
+        }
+
+
         OnMingameStateUpdate?.Invoke(isWin);
     }
 }

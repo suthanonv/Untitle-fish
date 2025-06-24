@@ -14,7 +14,7 @@ public class PhaseListener : MonoBehaviour
     [SerializeField] UnityEvent OnActive;
     [SerializeField] UnityEvent OnUnActive;
 
-    [SerializeField] bool enableActiveObj;
+    [SerializeField] bool enableSetActiveObj;
     private void Awake()
     {
         FindAnyObjectByType<PhaseController>().PhaseUpdateEvent += UpdatePhase;
@@ -22,7 +22,9 @@ public class PhaseListener : MonoBehaviour
 
     void UpdatePhase(Phase phase)
     {
-        bool isMyPhase = phase != activePhase;
+        bool isMyPhase = phase == activePhase;
+        if (enableSetActiveObj == false) return;
+        this.gameObject.SetActive(isMyPhase);
 
         if (isMyPhase)
         {
@@ -35,8 +37,7 @@ public class PhaseListener : MonoBehaviour
             OnUnActive?.Invoke();
         }
 
-        if (enableActiveObj == false) return;
-        this.gameObject.SetActive(enableActiveObj);
+
 
     }
 }
