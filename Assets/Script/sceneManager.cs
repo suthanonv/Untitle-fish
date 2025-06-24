@@ -1,14 +1,15 @@
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class sceneManager : MonoBehaviour
 {
     [SerializeField] private List<MiniGame> MiniGameScene = new List<MiniGame>();
     [SerializeField] private Animator transitionAnim;
-    
+
+
     [ContextMenu("Load All ScriptableObjects")]
     void LoadAllInEditor()
     {
@@ -22,7 +23,7 @@ public class sceneManager : MonoBehaviour
                 MiniGameScene.Add(obj);
         }
     }
-    
+
     public MiniGame randomMiniGame()
     {
         int rand = 0;
@@ -37,10 +38,10 @@ public class sceneManager : MonoBehaviour
         }
 
         MiniGameScene[rand].currentDownTime = 0;
-        
+
         return MiniGameScene[rand];
     }
-    
+
     public void ChangeScene(string SceneName)
     {
         StartCoroutine(LoadLevel(SceneName));
