@@ -33,7 +33,6 @@ public class PhaseController : MonoBehaviour
         }
         else
         {
-            phase = Phase.Intermission;
             Debug.Log("Game End Go back to Da something Scene");
             // Just for Test
             // Loading Next Scene Here
