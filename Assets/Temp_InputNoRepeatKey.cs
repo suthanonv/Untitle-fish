@@ -24,7 +24,6 @@ public class Temp_InputNoRepeatKey : MonoBehaviour
                     OnSuccessInputKey?.Invoke();
                     previosKey = key;
                 }
-
             }
         }
     }

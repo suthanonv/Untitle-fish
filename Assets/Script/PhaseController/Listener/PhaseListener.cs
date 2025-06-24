@@ -23,8 +23,10 @@ public class PhaseListener : MonoBehaviour
     void UpdatePhase(Phase phase)
     {
         bool isMyPhase = phase == activePhase;
-        if (enableSetActiveObj == false) return;
-        this.gameObject.SetActive(isMyPhase);
+        if (enableSetActiveObj)
+        {
+            this.gameObject.SetActive(isMyPhase);
+        }
 
         if (isMyPhase)
         {
