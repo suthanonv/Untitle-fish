@@ -11,12 +11,12 @@ public class MiniGameBase : MonoBehaviour
         if (gameEnded) return;
         gameEnded = true;
 
+        Debug.Log(win ? "Mini-game: WIN" : "Mini-game: LOSE");
+
         if (win && GameManager.instance != null)
         {
             // GameManager.instance.AddScore(1);
         }
-
-        Debug.Log(win ? "Mini-game: WIN" : "Mini-game: LOSE");
 
         StartCoroutine(UnloadAfterDelay(1f));
     }
