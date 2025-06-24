@@ -4,12 +4,17 @@ using UnityEngine.Events;
 
 public class PhaseListener : MonoBehaviour
 {
+    [SerializeField] Phase activePhase;
+
+
     public event Action OnActiveEvent;
     public event Action OnUnActiveEvent;
-    [SerializeField] Phase activePhase;
-    [SerializeField] UnityEvent OnActive, OnUnActive;
 
+    [Header("Active/UnActive Event")]
+    [SerializeField] UnityEvent OnActive;
+    [SerializeField] UnityEvent OnUnActive;
 
+    [SerializeField] bool enableActiveObj;
     private void Awake()
     {
         FindAnyObjectByType<PhaseController>().PhaseUpdateEvent += UpdatePhase;
@@ -17,17 +22,21 @@ public class PhaseListener : MonoBehaviour
 
     void UpdatePhase(Phase phase)
     {
-        if (phase != activePhase)
+        bool isMyPhase = phase != activePhase;
+
+        if (isMyPhase)
         {
-            OnUnActiveEvent?.Invoke();
+            OnActiveEvent?.Invoke();
             OnActive?.Invoke();
-            this.gameObject.SetActive(false);
         }
         else
         {
-            OnActiveEvent?.Invoke();
+            OnUnActiveEvent?.Invoke();
             OnUnActive?.Invoke();
-            this.gameObject.SetActive(true);
         }
+
+        if (enableActiveObj == false) return;
+        this.gameObject.SetActive(enableActiveObj);
+
     }
 }
