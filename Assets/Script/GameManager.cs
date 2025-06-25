@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,5 +14,17 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+    }
+
+    public search FindComponnetInChild<search>() where search : class
+    {
+        search _Component = null;
+
+
+        _Component = this.gameObject.transform.GetComponentInChildren<search>();
+
+        return _Component;
+
+
     }
 }
